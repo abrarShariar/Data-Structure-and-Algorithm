@@ -1,6 +1,11 @@
+/*
+Write a program to create a linked list of five nodes
+where each node of the list will contain an integer.
+Display the data of the list on the screen.
+*/
+
 #include<iostream>
 using namespace std;
-
 
 struct node{
     int data;

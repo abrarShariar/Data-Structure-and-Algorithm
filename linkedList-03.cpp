@@ -1,3 +1,8 @@
+/*
+Write a program to insert a node in between
+two existing nodes of a linked list. Display the data of the existing
+(old) linked list and the updated linked list.
+*/
 #include<iostream>
 using namespace std;
 
@@ -36,14 +41,14 @@ int main(){
 
     //insert data in between 1st and 2nd position
     tptr=root;
-    nptr=new node;
+    nptr=new node;              //creating new node
     nptr->data=2;
     nptr->next=NULL;
 
-    node *temp;
+    node *temp;                 //node 1 kept in temp
     temp=tptr->next;
 
-    tptr->next=nptr;
+    tptr->next=nptr;            //connect new pointer
     tptr=nptr;
     tptr->next=temp;
 
@@ -53,7 +58,6 @@ int main(){
 */
 
     displayList(root);
-
 }
 
 void displayList(node *root){
@@ -66,5 +70,4 @@ void displayList(node *root){
         }
         tptr=tptr->next;
     }
-
 }

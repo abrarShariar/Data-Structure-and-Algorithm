@@ -27,7 +27,7 @@ int main(){
             root=nptr;
             tptr=nptr;
         }else{
-            tptr->next=tptr;
+            tptr->next=nptr;
             tptr=nptr;
         }
     }
