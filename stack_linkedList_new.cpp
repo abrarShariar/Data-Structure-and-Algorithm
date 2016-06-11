@@ -5,51 +5,78 @@ struct node{
     int data;
     node *next;
 };
-node* tail;
 
 node* createNode(int item);
 void showStack(node* root);
 node* push(node* root,int item);
 node* pop(node* root,int* popItem);
+node* pushBack(node* tail,int item);
+node* popBack(node* root,node* tail);
 
 int main(){
-    node *root,*nptr,*tptr;
+    node *root,*nptr,*tptr,*tail;
     root=NULL;
     int popItem,height;
-
 
     cout<<"STACK ITEMS: ";
     cin>>height;
     //enter values
-    tail=root;
+    tptr=root;
     for(int i=0;i<height;i++){
         int item;
         cout<<"PUSH: ";
         cin>>item;
         //push node into stack
         tptr=push(tptr,item);
+        if(i==0){
+            tail=tptr;
+        }
     }
 
-    cout<<"TAIL: "<<tail->data<<endl;
+    tail=pushBack(tail,1000);
+    tail=pushBack(tail,2000);
+
+    tail=popBack(tptr,tail);
+    tail=popBack(tptr,tail);
 
     //pop values
     int popNum;
     cout<<"How many items to Pop: ";
     cin>>popNum;
-    /*
-    if(popNum>=height){
-        cout<<"INVALID INPUT"<<end;
-    }
-    */
+
     for(int i=0;i<popNum;i++){
         tptr=pop(tptr,&popItem);
     }
 
     //display stack (linked List)
-
-    tptr=root;
+    //tptr=root;
     cout<<"AFTER POP"<<endl;
     showStack(tptr);
+}
+
+node* popBack(node *root,node* tail){
+    node *tptr;
+    tptr=root;
+    while(true){
+        if(tptr->next==tail){
+            break;
+        }
+        tptr=tptr->next;
+    }
+
+    tail=tptr;
+    tail->next=NULL;
+    delete tptr;
+    return tail;
+}
+
+node* pushBack(node* tail,int item){
+    node* nptr;
+    nptr=createNode(item);
+    tail->next=nptr;
+    tail=nptr;
+    return tail;
+
 }
 
 node* createNode(int item){
@@ -81,6 +108,7 @@ node* push(node* root,int item){
 
     if(root==NULL){
         root=nptr;
+        //tail=nptr;
         //tptr=nptr;
     }else{
         tptr=root;
@@ -104,6 +132,4 @@ node* pop(node* root,int* popItem){
         delete root;
         return tptr;
     }
-
-
 }
