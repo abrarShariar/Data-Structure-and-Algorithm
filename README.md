@@ -6,5 +6,6 @@ Academic (CSC2105)
     - Linear
     - Doubly
   - Stack
+  - Queue
   
 **Programming language used:** C++
