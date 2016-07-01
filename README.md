@@ -2,6 +2,7 @@
 Academic (CSC2105)
 
   - Array
+  - Dynamic Array
   - Linked List
     - Linear
     - Doubly
