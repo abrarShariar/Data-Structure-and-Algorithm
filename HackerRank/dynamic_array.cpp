@@ -1,22 +1,27 @@
+//SOLVED
+/*
+https://www.hackerrank.com/challenges/dynamic-array?h_r=next-challenge&h_v=zen
+
+*/
+
+
 #include<iostream>
 using namespace std;
 
-int capacity;
-//int sz=0;
-int lastAns=0;
+int capacity,lastAns=0;
 
 struct seq{
     int sz;
+    int capacity=2;
     int* pseq;
 };
 
 void push(seq*,int);
 
 int main(){
-    int N;            //number of sequence
-    int capacity;     //number of query
+    int N,Q;            //number of sequence
 
-    cin>>N>>capacity;
+    cin>>N>>Q;
 
     seq* seqList[N];    //define two seq
     seq *nptr,*tptr;
@@ -25,13 +30,13 @@ int main(){
     for(int i=0;i<N;i++){
         nptr=new seq;
         nptr->sz=0;
-        int* arr=new int[capacity];
+        int* arr=new int[nptr->capacity];
         nptr->pseq=arr;
         seqList[i]=nptr;
     }
 
     //take input query
-    for(int i=0;i<capacity;i++){
+    for(int i=0;i<Q;i++){
         int query,x,y,index;
         cin>>query>>x>>y;
         index=((x^lastAns)%N);
@@ -42,7 +47,7 @@ int main(){
         }else{
             int i=y%tptr->sz;
             lastAns=tptr->pseq[i];
-        cout<<lastAns<<endl;
+            cout<<lastAns<<endl;
         }
     }
 
@@ -58,6 +63,17 @@ int main(){
 }
 
 void push(seq* mySeq,int item){
+    //if array full
+    if(mySeq->sz==mySeq->capacity){
+        mySeq->capacity=mySeq->capacity*2;
+        int* arr=new int[mySeq->capacity];
+        for(int i=0;i<mySeq->sz;i++){
+            arr[i]=mySeq->pseq[i];
+        }
+        delete mySeq->pseq;
+        mySeq->pseq=arr;
+    }
+
     mySeq->pseq[mySeq->sz]=item;
     mySeq->sz=mySeq->sz+1;
 }
