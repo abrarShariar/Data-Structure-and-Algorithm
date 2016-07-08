@@ -1,109 +1,120 @@
 #include<iostream>
+#include<map>
 using namespace std;
 
-struct node{
-    int data;
-    node *next;
-};
-node* tail;
+#define MALT 1
+#define UNMALT 0
 
-node* createNode(int item);
-void showStack(node* root);
-node* push(node* root,int item);
-node* pop(node* root,int* popItem);
+struct customer{
+    map<int,int>choice;
+};
+
+
+void testOutput(customer*,int);
 
 int main(){
-    node *root,*nptr,*tptr;
-    root=NULL;
-    int popItem,height;
 
+    int test;   //no. of test cases
+    cin>>test;
+for(int t=0;t<test;t++){
 
-    cout<<"STACK ITEMS: ";
-    cin>>height;
-    //enter values
-    tail=root;
-    for(int i=0;i<height;i++){
-        int item;
-        cout<<"PUSH: ";
-        cin>>item;
-        //push node into stack
-        tptr=push(tptr,item);
+    map<int,int>::iterator it;
+    int N;  //no.of flavours
+    int M;  //no. of customers
+    cin>>N;
+    cin>>M;
+
+    int makeBatch[N];           //total no. of milkshakes to make
+    for(int i=0;i<N;i++){
+        makeBatch[i]=-1;
     }
 
-    cout<<"TAIL: "<<tail->data<<endl;
+    customer allCustomer[M];    //array to store all customers struct
 
-    //pop values
-    int popNum;
-    cout<<"How many items to Pop: ";
-    cin>>popNum;
-    /*
-    if(popNum>=height){
-        cout<<"INVALID INPUT"<<end;
+    //take input for all customers
+    for(int i=0;i<M;i++){
+        customer c1;
+        int T;                  //no.of choice of customer
+        cin>>T;
+        for(int j=0;j<T;j++){
+            int X;              //flavour no.
+            int Y;              // 1/0
+            cin>>X>>Y;
+
+            it=c1.choice.find(X);
+            //if key is unique
+            if(it==c1.choice.end()){
+                c1.choice[X]=Y;
+                continue;
+            }else if(it!=c1.choice.end() && c1.choice[X]==1 && Y==0){
+            //if key is not unique and 1 and Y=0
+                c1.choice[X]=Y;
+                continue;
+            }
+        }
+        allCustomer[i]=c1;
     }
-    */
-    for(int i=0;i<popNum;i++){
-        tptr=pop(tptr,&popItem);
-    }
 
-    //display stack (linked List)
 
-    tptr=root;
-    cout<<"AFTER POP"<<endl;
-    showStack(tptr);
-}
+    bool isPossible=true;
+    //proccess (loop over each milkshake)
+    for(int i=0;i<N;i++){
+        int key=i+1;
+        //loop over all customers
+        for(int j=0;j<M;j++){
+            customer c1=allCustomer[j];
 
-node* createNode(int item){
-    node* nptr;
-    nptr=new node;
-    nptr->data=item;
-    nptr->next=NULL;
-    return nptr;
-}
+            for(map<int,int>::iterator it=c1.choice.begin();it!=c1.choice.end();it++){
+                //check conditions for making milkshakes
+                if(c1.choice.size()==1){
+                    makeBatch[i]=it->second;
+                    //break;
+                }
+                else if(it->first==key && makeBatch[i]==-1 && it->second==0){
+                    makeBatch[i]=it->second;
+                    //continue;
+                }
+                else if(it->first==key && makeBatch[i]!=-1 && c1.choice.size()==1){
+                    isPossible=false;
+                    //continue;
+                }
+            }
 
-void showStack(node* root){
-    if(root==NULL){
-        cout<<"STACK EMPTY"<<endl;
-        return;
-    }
-    while(true){
-        cout<<root->data<<endl;
-        if(root->next==NULL){
+            if(!isPossible){
+                break;
+            }
+        }
+        if(!isPossible){
             break;
         }
-        root=root->next;
     }
+
+
+    //---------------test output----------------------------
+    //testOutput(allCustomer,M);
+    cout<<"Case #"<<t+1<<": ";
+    if(isPossible){
+        for(int i=0;i<N;i++){
+            if(makeBatch[i]==-1){
+                makeBatch[i]=0;
+            }
+            cout<<makeBatch[i]<<" ";
+        }
+    }else{
+        cout<<"IMPOSSIBLE";
+    }
+    cout<<endl;
+}
 }
 
-node* push(node* root,int item){
-    node *nptr,*tptr;
-    nptr=new node;
-    nptr=createNode(item);
 
-    if(root==NULL){
-        root=nptr;
-        //tptr=nptr;
-    }else{
-        tptr=root;
-        root=nptr;
-        nptr->next=tptr;
+void testOutput(customer* parr,int sz){
+    for(int i=0;i<sz;i++){
+        cout<<"Custome: "<<i<<endl;
+        customer c1=*(parr+i);
+        for(map<int,int>::iterator it=c1.choice.begin();it!=c1.choice.end();it++){
+            cout<<it->first<<" "<<it->second<<endl;
+        }
+        cout<<endl;
     }
-    return root;
-}
-
-node* pop(node* root,int* popItem){
-
-    if(root==NULL){
-        cout<<"\nSTACK EMPTY"<<endl;
-        return 0;
-    }else{
-        node* tptr;
-        tptr=root;
-        tptr=tptr->next;
-        *popItem=root->data;
-        cout<<"POP: "<<*popItem<<endl;
-        delete root;
-        return tptr;
-    }
-
-
 }
