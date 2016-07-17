@@ -1,39 +1,72 @@
 #include<iostream>
 using namespace std;
 
-
 struct node{
     int data;
     node* next;
-}
+    node* prev;
+};
 
-node* createNode(int);
 
 int main(){
     node *root,*tptr,*nptr;
-    root=NULL;
 
-    for(int i=0;i<10;i++){
+
+}
+
+
+
+
+
+
+//singly linked list delete
+/*
+int main(){
+    node *root,*tptr,*nptr;
+    root=NULL;
+    for(int i=0;i<5;i++){
+        nptr=new node;
+        nptr->data=i+1;
+        nptr->next=NULL;
         if(root==NULL){
             root=nptr;
             tptr=nptr;
-        }else{
-            insertNode(tptr,);
+            continue;
         }
-
+        tptr->next=nptr;
+        tptr=nptr;
     }
 
-}
+    //test output
+    cout<<"Before Delete: "<<endl;
+    tptr=root;
+    while(tptr!=NULL){
+        cout<<tptr->data<<" ";
+        tptr=tptr->next;
+    }
+    cout<<endl;
+    //delete
+    tptr=root;
+    int delData;
+    cin>>delData;
+    while(tptr!=NULL){
+        if(root->data==delData){
+            root=root->next;
+            delete tptr;
+            break;
+        }
+        if(tptr->next->data==delData){
+            tptr->next=tptr->next->next;
+            break;
+        }
+        tptr=tptr->next;
+    }
 
-insertNode(node* tptr,node* nptr){
-    node* nptr;
-    nptr=createNode()
+    //test output
+    tptr=root;
+    while(tptr!=NULL){
+        cout<<tptr->data<<" ";
+        tptr=tptr->next;
+    }
 }
-
-node* createNode(int item){
-    node* nptr;
-    nptr=new node;
-    nptr->data=item;
-    nptr->next=NULL;
-    return nptr;
-}
+*/
