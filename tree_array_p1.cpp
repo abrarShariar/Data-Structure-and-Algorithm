@@ -4,7 +4,7 @@ using namespace std;
 //complete binary tree with 11 nodes
 #define LIMIT 11    //max nodes
 
-int capacity=10;      //size of initial array
+int capacity=5;      //size of initial array
 int sz=0;
 int *dynamic;   //pointer to dynamic array
 int countNode=0;
@@ -50,13 +50,11 @@ int main(){
         root++;
     }
 
-    for(int i=0;i<sz;i++){
+    for(int i=0;i<=sz;i++){
         if(dynamic[i]!=-1 || dynamic[i]!=NULL){
             cout<<dynamic[i]<<" ";
         }
     }
-
-
 }
 
 //insert into dynamic array
@@ -67,7 +65,7 @@ void insertNode(int item,int pos){
         capacity=2*capacity;
         int *arr=new int[capacity];
         //shift data
-        for(int i=0;i<sz;i++){
+        for(int i=0;i<=sz;i++){
             arr[i]=dynamic[i];
         }
         delete dynamic;
