@@ -8,5 +8,8 @@ Academic (CSC2105)
     - Doubly
   - Stack
   - Queue
+  - Tree
+    - Binary Tree
+    - BST
   
 **Programming language used:** C++
