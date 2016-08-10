@@ -6,10 +6,18 @@ Academic (CSC2105)
   - Linked List
     - Linear
     - Doubly
+    - Circular
   - Stack
   - Queue
+    - Linear
+    - Circular
   - Tree
     - Binary Tree
     - BST
+  - Heap
+    - Binary Heap
+    - Max
+    - Min
+
   
 **Programming language used:** C++
