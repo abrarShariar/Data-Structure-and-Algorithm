@@ -37,7 +37,7 @@ int main(){
 }
 
 //binary search (template function)
-template<typename Type>bool binarySearch(Type* parr,Type item,int sz){
+template<typename Type> bool binarySearch(Type* parr,Type item,int sz){
 
     if(parr[0]!=item && sz<=0){
         cout<<"Not Found"<<endl;

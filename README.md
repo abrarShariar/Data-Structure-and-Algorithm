@@ -19,5 +19,12 @@ Academic (CSC2105)
     - Max
     - Min
 
-  
+## Resources
+
+
+  - [Graph implementation CS Yale](http://www.cs.yale.edu/homes/aspnes/pinewiki/C(2f)Graphs.html)
+
+  - [Graph data structure - geeksforgeeks](http://www.geeksforgeeks.org/graph-and-its-representations/)
+
+
 **Programming language used:** C++
