@@ -41,7 +41,7 @@ Academic (CSC2105) & Academic (CSC2211)
 
   - [Circular Linked List in C](http://www.thelearningpoint.net/computer-science/data-structures-circular-linked-list--with-c-program-source-code) **#linkedList**
 
-   - [Algorithm-Analysis-And-Design-Stanford-MOOC](https://www.coursera.org/learn/algorithm-design-analysis/home) **#Algorithm**
+  - [Algorithm-Analysis-And-Design-Stanford-MOOC](https://www.coursera.org/learn/algorithm-design-analysis/home) **#Algorithm**
 
 
 **Programming language used:** C/C++/Java
