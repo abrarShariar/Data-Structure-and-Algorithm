@@ -1,6 +1,6 @@
 # Data-Structure-and-Algorithm
 
-Academic (CSC2105)
+Academic (CSC2105) & Academic (CSC2211)
 
 ## Contents
 
@@ -24,7 +24,13 @@ Academic (CSC2105)
   - Graph
     - BFS
     - DFS
+ 
+  - Insertion Sort
+  - Merge Sort
+  - Heap Sort
 
+  - Karatsuba multiplication 
+ 
 
 ## Resources
 
@@ -35,4 +41,7 @@ Academic (CSC2105)
 
   - [Circular Linked List in C](http://www.thelearningpoint.net/computer-science/data-structures-circular-linked-list--with-c-program-source-code) **#linkedList**
 
-**Programming language used:** C++
+   - [Algorithm-Analysis-And-Design-Stanford-MOOC](https://www.coursera.org/learn/algorithm-design-analysis/home) **#Algorithm**
+
+
+**Programming language used:** C/C++/Java
