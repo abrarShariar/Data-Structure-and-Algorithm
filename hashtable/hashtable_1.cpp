@@ -54,7 +54,38 @@ class HashMap {
             }
         }
 
+        //get a particular node
+        V getNode(K key){
+            int hashIndex = this->hashCode(key);
 
+            while(arr[hashIndex] != NULL){
+                if(arr[hashIndex]->key == key){
+                    return arr[hashIndex]->value;
+                }
+                hashIndex++;
+                hashIndex%=this->capacity;
+            }
+            return NULL;
+        }
+
+        //delete node
+        V deleteNode(K key){
+            int hashIndex = this->hashCode(key);
+            while(this->arr[hashIndex] != NULL){
+                if(this->arr[hashIndex]->key == key){
+                    HashNode<K,V> *temp = this->arr[hashIndex];
+                    this->tableSize--;
+                    this->arr[hashIndex] = this->dummy;
+                    return temp->value;
+                }
+                hashIndex++;
+                hashIndex%=this->capacity;
+            }
+            return NULL;
+        }
+
+
+        //display
         void display(){
             for(int i = 0;i < this->capacity;i++){
                 if(arr[i] != NULL && arr[i]->key != -1){
@@ -64,6 +95,9 @@ class HashMap {
                 }
             }
         }
+
+
+
 };
 
 
