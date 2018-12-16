@@ -13,11 +13,13 @@ def DFS(s):
             DFS(x)
     return
 
-n1, n2, n3, n4, n5 = [node(1), node(2), node(3), node(4), node(5)]
-n1.neighbours = [n2, n3]
-n2.neighbours = [n1, n4, n5]
-n3.neighbours = [n1]
-n4.neighbours = [n2]
-n5.neighbours = [n2]
 
-DFS(n1)
+totalNodes = 5
+nodeList = [node(i) for i in range(totalNodes+1)]
+nodeList[1].neighbours = [nodeList[2], nodeList[3]]
+nodeList[2].neighbours = [nodeList[1], nodeList[4], nodeList[5]]
+nodeList[3].neighbours = [nodeList[1]]
+nodeList[4].neighbours = [nodeList[2]]
+nodeList[5].neighbours = [nodeList[2]]
+
+DFS(nodeList[1])
