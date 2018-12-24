@@ -37,44 +37,42 @@ void MergeSort(int* arr,int l,int r){
 }
 
 //merge subroutine
-void Merge(int* parr,int l,int m,int r){
-    int n1=(m-l)+1;
-    int n2=r-m;
+void Merge(int *arr,int l, int m, int r){
+    int i,j,k,temp[r-l+1];
+    i=l;
+    k=0;
+    j=m+1;
 
-    int lArr[n1];
-    int rArr[n2];
-//prepare left array
-    for(int i=0;i<n1;i++){
-        lArr[i]=parr[l+i];
-    }
-//prepare right array
-    for(int i=0;i<n2;i++){
-        rArr[i]=parr[m+1+i];
-    }
-//merge temp arrays into main array
-    int li=0,ri=0,ki=l;
-    while(li<n1 && ri<n2){
-        if(lArr[li] <= rArr[ri]){
-            parr[ki]=lArr[li];
-            li++;
-        }else{
-            parr[ki]=rArr[ri];
-            ri++;
+    while(i <= m && j <= r){
+        if(arr[i] < arr[j]){
+            temp[k] = arr[i];
+            k++;
+            i++;
+        } else {
+            temp[k] = arr[j];
+            k++;
+            j++;
         }
-        ki++;
     }
 
-//copy remaining items
-    while(li<n1){
-        parr[ki]=lArr[li];
-        ki++;
-        li++;
-    }
-    while(ri<n2){
-        parr[ki]=rArr[ri];
-        ki++;
-        ri++;
-    }
+    while (i <= m){
+		temp[k] = arr[i];
+		k++;
+		i++;
+	}
+
+	// Insert all the remaining values from j to high into temp[].
+	while (j <= r){
+		temp[k] = arr[j];
+		k++;
+		j++;
+	}
+
+
+	// Assign sorted data stored in temp[] to a[].
+	for (i = l; i <= r; i++){
+		arr[i] = temp[i-l];
+	}
 }
 
 
