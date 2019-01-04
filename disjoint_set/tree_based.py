@@ -11,7 +11,9 @@ class DisjointSet:
             return self.find(self.parent[item])
 
     def union(self, set1, set2):
-        self.parent[set1] = set2
+        root1 = self.find(set1)
+        root2 = self.find(set2)
+        self.parent[root1] = root2
 
     def print_all_nodes(self):
         for v in self.vertices:
@@ -28,14 +30,11 @@ def main():
 
     ds = DisjointSet(vertices, parent)
     print("Print all vertices in genesis: ")
-    # ds.print_all_nodes()
-
     ds.union('b', 'd')
-    # ds.print_all_nodes()
-    # print(ds.find('b'))
+
     ds.union('h', 'b')
     print(ds.find('h'))
-    ds.union('i', 'h')
-
+    ds.union('h', 'i')
     print(ds.find('i'))
+
 main()
